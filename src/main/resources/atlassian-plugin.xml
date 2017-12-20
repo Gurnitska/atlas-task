@@ -12,17 +12,19 @@
     
     <!-- add our web resources -->
     <web-resource key="test-task-resources" name="test-task Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
+
         <resource type="download" name="test-task.css" location="/css/test-task.css"/>
         <resource type="download" name="test-task.js" location="/js/test-task.js"/>
         <resource type="download" name="images/" location="/images"/>
 
-        <context>test-task</context>
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
     </web-resource>
 
-    <client-web-panel name="Reports" key="reports" location="bitbucket.pull-request.nav">
-
-    </client-web-panel>
+    <web-item name="Reports" key="reports.meta" section="bitbucket.pull-request.nav" weight="100">
+        <label>Reports</label>
+        <link linkId="reports">/projects/${pullRequest.toRef.repository.project.key}/repos/${pullRequest.toRef.repository.slug}/pull-requests/${pullRequest.id}/reports</link>
+        <resource type="download" name="test-task.js" location="/js/test-task.js"/>
+        <dependency>com.gurnit.task-tests:test-task-resources</dependency>
+    </web-item>
     
 </atlassian-plugin>
